@@ -1,0 +1,255 @@
+{
+    "action": "Rig",
+    "name": "Boat",
+    "pre": [
+        {
+            "action": "Screw + Bolt",
+            "pre": [
+                {
+                    "action": "Paint; Sand, Varnish",
+                    "pre": [
+                        {
+                            "action": "Sand",
+                            "name": "Hull"
+                        }
+                    ]
+                },
+                {
+                    "action": "Varnish",
+                    "pre": [
+                        {
+                            "action": "Sand",
+                            "pre": [
+                                {
+                                    "action": "Epoxy coat",
+                                    "pre": [
+                                        {
+                                            "action": "Stain",
+                                            "pre": [
+                                                {
+                                                    "action": "Route",
+                                                    "name": "Floorboards"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "action": "Epoxy bond",
+                    "pre": [
+                        {
+                            "action": "Varnish",
+                            "pre": [
+                                {
+                                    "action": "Sealant + Screw",
+                                    "pre": [
+                                        {
+                                            "action": "Sand",
+                                            "name": "Seats"
+                                        },
+                                        {
+                                            "action": "Sand",
+                                            "name": "Seat Supports"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "action": "Paint",
+                            "pre": [
+                                {
+                                    "action": "Sand",
+                                    "pre": [
+                                        {
+                                            "action":"Epoxy coat",
+                                            "pre":[
+                                                {
+                                                    "action":"Sand",
+                                                    "pre":[
+                                                        {
+                                                            "action":"Sand",
+                                                            "name":"Floatation Blocks"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name":"Gudgeons"
+                }
+            ]
+        },
+        {
+            "action": "Carriage bolt",
+            "pre": [
+                {
+                    "action": "Sealant + Screw",
+                    "pre":[
+                        {
+                            "action":"Varnish",
+                            "pre":[
+                                {
+                                    "action":"Sand",
+                                    "pre":[
+                                        {
+                                            "action":"Epoxy coat",
+                                            "pre":[
+                                                {
+                                                    "action":"Route",
+                                                    "pre":[
+                                                        {
+                                                            "action":"Sand",
+                                                            "name":"Rudder Cassettes"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Pintles"
+                        }
+                    ]
+                },
+                {
+                    "action":"Varnish",
+                    "pre":[
+                        {
+                            "action":"Sand",
+                            "pre": [
+                                {
+                                    "action":"Epoxy coat",
+                                    "pre":[
+                                        {
+                                            "action":"Sand",
+                                            "pre":[
+                                                {
+                                                    "action":"Shape",
+                                                    "pre":[
+                                                        {
+                                                            "action":"Route",
+                                                            "name": "Rudder"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "action":"Varnish",
+                    "pre":[
+                        {
+                            "action": "Sand",
+                            "name": "Tiller"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "action": "Varnish",
+            "pre":[
+                {
+                    "action":"Sand",
+                    "pre":[
+                        {
+                            "action":"Epoxy coat",
+                            "pre":[
+                                {
+                                    "action":"Sand",
+                                    "pre":[
+                                        {
+                                            "action":"Shape",
+                                            "name":"Daggerboard"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "action":"Varnish",
+            "pre":[
+                {
+                    "action":"Drill",
+                    "pre":[
+                        {
+                            "action":"Route",
+                            "pre":[
+                                {
+                                    "action":"Shape",
+                                    "pre":[
+                                        {
+                                            "action":"Scarf",
+                                            "name":"Mast"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "action":"Varnish",
+            "pre":[
+                {
+                    "action":"Drill",
+                    "pre":[
+                        {
+                            "action":"Route",
+                            "pre":[
+                                {
+                                    "action":"Shape",
+                                    "name":"Boom"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "action":"Varnish",
+            "pre":[
+                {
+                    "action":"Drill",
+                    "pre":[
+                        {
+                            "action":"Route",
+                            "pre":[
+                                {
+                                    "action":"Shape",
+                                    "name":"Yard"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

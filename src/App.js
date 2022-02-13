@@ -1,23 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import boatRecipe from "./boat.min.json";
+import { RecipeNodeTree } from './RecipeNodeView';
 
 function App() {
+
+  /** @type {RecipeNode} */
+  const recipe = boatRecipe;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RecipeNodeTree node={recipe} />
     </div>
   );
 }
