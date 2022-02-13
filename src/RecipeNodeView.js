@@ -4,7 +4,7 @@ const listStyle = { padding: 5 };
 const itemStyle = { borderRadius: 5, display: "inline-block", padding: 5, margin: 10, backgroundColor: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.1)" };
 const nameStyle = { fontWeight: "bold", backgroundColor: "#FFFFFF", borderRadius: 5, border: "1px solid #333333", padding: 5, margin: "-5px -5px 5px -5px" };
 const actionStyle = { backgroundColor: "#00CCCC", border: "1px solid #009999", color: "#003333", borderRadius: 5, padding: "2px 4px", margin: 0, display: "inline-block" };
-const ingredientStyle = { listStyle: "none", padding: 5, background: "#333333", borderRadius: 5, color: "#F5F5F5", display: "inline-block", marginRight: 5 };
+const ingredientStyle = { listStyle: "none", padding: 5, background: "#333333", borderRadius: 5, color: "#F5F5F5", display: "inline-block", marginRight: 5, marginBottom: 5 };
 
 /**
  *
@@ -26,7 +26,7 @@ const ingredientStyle = { listStyle: "none", padding: 5, background: "#333333", 
  * @param {(RecipeNode|string)[]} props.pre
  * @param {string} [props.name]
  */
-export function RecipeNodeItem ({ action, pre, name = null }) {
+function RecipeNodeItem ({ action, pre, name = null }) {
     const [ collapsed, setCollapsed ] = useState(false);
 
     if (collapsed) {

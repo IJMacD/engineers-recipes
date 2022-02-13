@@ -1,0 +1,48 @@
+{
+    "action": ["Bake","Brush"],
+    "name": "Scones",
+    "pre": [
+        {
+            "action": ["Cut","Pat","Fold"],
+            "pre": [
+                {
+                    "action": "Combine",
+                    "name": "Dough",
+                    "pre": [
+                        {
+                            "action": "Stir",
+                            "pre": [
+                                {
+                                    "action": ["Rub","Add"],
+                                    "pre": [
+                                        {
+                                            "action": "Mix",
+                                            "pre": ["Flour","Salt","Baking Power"]
+                                        },
+                                        "Butter"
+                                    ]
+                                },
+                                "Sugar"
+                            ]
+                        },
+                        {
+                            "action": "Add",
+                            "pre": [
+                                {
+                                    "action": "Heat",
+                                    "pre": ["Milk"]
+                                },
+                                "Vanilla Extract",
+                                "Lemon Juice"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "action": "Beat",
+            "pre": ["Egg"]
+        }
+    ]
+}
