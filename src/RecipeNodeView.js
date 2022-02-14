@@ -1,21 +1,22 @@
 import { useState } from "react";
+import "./RecipeNodeView.css";
 
-const listStyle = { padding: 5 };
-const itemStyle = { borderRadius: 5, display: "inline-block", padding: 5, margin: 10, backgroundColor: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.1)" };
-const nameStyle = { fontWeight: "bold", backgroundColor: "#FFFFFF", borderRadius: 5, border: "1px solid #333333", padding: 5, margin: "-5px -5px 5px -5px" };
-const actionStyle = { backgroundColor: "#00CCCC", border: "1px solid #009999", color: "#003333", borderRadius: 5, padding: "2px 4px", margin: 0, display: "inline-block" };
-const ingredientStyle = { listStyle: "none", padding: 5, background: "#333333", borderRadius: 5, color: "#F5F5F5", display: "inline-block", marginRight: 5, marginBottom: 5 };
+/** @typedef {import('./types').RecipeNode} RecipeNode */
 
 /**
  *
  * @param {object} props
  * @param {RecipeNode} props.node
+ * @param {string} [props.style]
+ * @param {boolean} [props.showCheckboxes]
  */
- export function RecipeNodeTree ({ node }) {
+ export function RecipeNodeView ({ node, style = "tree", showCheckboxes = false }) {
     return (
-        <ul style={listStyle}>
-            <RecipeNodeItem action={node.action} pre={node.pre} name={node.name} />
-        </ul>
+        <div className={style === "tree" ? "RecipeNodeTree" : "RecipeNodeTable"}>
+            <ul className="list">
+                <RecipeNodeItem action={node.action} pre={node.pre} name={node.name} showCheckboxes={showCheckboxes} />
+            </ul>
+        </div>
     );
 }
 
@@ -25,13 +26,9 @@ const ingredientStyle = { listStyle: "none", padding: 5, background: "#333333", 
  * @param {string|string[]} props.action
  * @param {(RecipeNode|string)[]} props.pre
  * @param {string} [props.name]
+ * @param {boolean} [props.showCheckboxes]
  */
-function RecipeNodeItem ({ action, pre, name = null }) {
-    const [ collapsed, setCollapsed ] = useState(false);
-
-    if (collapsed) {
-        return <li style={{ ...ingredientStyle, cursor: "pointer" }} onClick={() => setCollapsed(false)}>+ {name}</li>;
-    }
+function RecipeNodeItem ({ action, pre, name = null, showCheckboxes = false }) {
 
     if (!action) {
         throw Error("Action cannot be null");
@@ -46,28 +43,51 @@ function RecipeNodeItem ({ action, pre, name = null }) {
             throw Error("Action cannot be an array of 1");
         }
 
-        return (
-            <li style={itemStyle}>
-                { name && <p style={{ ...nameStyle, cursor: "pointer" }} onClick={() => setCollapsed(true)}>{name}</p> }
-                <p style={actionStyle}>{action[0]}</p>
-                <ul style={listStyle}>
-                    <RecipeNodeItem action={action.length === 2 ? action[1] : action.slice(1)} pre={pre} />
-                </ul>
-            </li>
-        );
+        const [ thisAction, ...otherActions ] = action;
+        const newAction = otherActions.length === 1 ? otherActions[0] : otherActions;
+
+        const newPre = [
+            {
+                action: newAction,
+                pre
+            }
+        ];
+
+        return <RealItem name={name} action={thisAction} pre={newPre} showCheckboxes={showCheckboxes} />
+    }
+
+    return <RealItem name={name} action={action} pre={pre} showCheckboxes={showCheckboxes} />;
+}
+
+/**
+ *
+ * @param {object} props
+ * @param {string|string[]} props.action
+ * @param {(RecipeNode|string)[]} props.pre
+ * @param {string} [props.name]
+ * @param {boolean} [props.showCheckboxes]
+ */
+function RealItem ({ name, action, pre, showCheckboxes }) {
+    const [ collapsed, setCollapsed ] = useState(false);
+
+    if (collapsed) {
+        return <li className="ingredient" style={{ cursor: "pointer" }} onClick={() => setCollapsed(false)}>+ {name}</li>;
     }
 
     return (
-        <li style={itemStyle}>
-            { name && <p style={{ ...nameStyle, cursor: "pointer" }} onClick={() => setCollapsed(true)}>{name}</p> }
-            <p style={actionStyle}>{action}</p>
-            <ul style={listStyle}>
+        <li className="item">
+            { name && <p className="name" style={{ cursor: "pointer" }} onClick={() => setCollapsed(true)}>{name}</p> }
+            <label className="action">
+                { showCheckboxes && <input type="checkbox" /> }
+                {action}
+            </label>
+            <ul className="list">
                 {
                     pre.map((p, i) => {
                         if (typeof p === "string") {
-                            return <li key={i} style={ingredientStyle}>{p}</li>;
+                            return <li key={i} className="ingredient">{p}</li>;
                         } else {
-                            return <RecipeNodeItem key={i} action={p.action} pre={p.pre} name={p.name} />;
+                            return <RecipeNodeItem key={i} action={p.action} pre={p.pre} name={p.name} showCheckboxes={showCheckboxes} />;
                         }
                     })
                 }

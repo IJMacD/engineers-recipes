@@ -1,4 +1,4 @@
-interface RecipeNode {
+export interface RecipeNode {
     action: string|string[];
     pre: (RecipeNode|string)[];
     name?: string;
