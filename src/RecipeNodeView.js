@@ -70,18 +70,14 @@ function RecipeNodeItem ({ action, pre, name = null, showCheckboxes = false }) {
 function RealItem ({ name, action, pre, showCheckboxes }) {
     const [ collapsed, setCollapsed ] = useState(false);
 
-    if (collapsed) {
-        return <li className="ingredient" style={{ cursor: "pointer" }} onClick={() => setCollapsed(false)}>+ {name}</li>;
-    }
-
     return (
-        <li className="item">
-            { name && <p className="name" style={{ cursor: "pointer" }} onClick={() => setCollapsed(true)}>{name}</p> }
-            <label className="action">
+        <li className={collapsed?"ingredient":"item"}>
+            { name && <p className={collapsed?null:"name"} style={{ cursor: "pointer", margin: 0 }} onClick={() => setCollapsed(c => !c)}>{ collapsed && "+ "}{name}</p> }
+            <label className="action" style={collapsed?{display:"none"}:null}>
                 { showCheckboxes && <input type="checkbox" /> }
                 {action}
             </label>
-            <ul className="list">
+            <ul className="list" style={collapsed?{display:"none"}:null}>
                 {
                     pre.map((p, i) => {
                         if (typeof p === "string") {

@@ -5,7 +5,7 @@ import { RecipeNodeView } from './RecipeNodeView';
 import { useState } from 'react';
 
 function App() {
-  const [ viewMode, setViewMode ] = useState("tree");
+  const [ viewMode, setViewMode ] = useState("table");
   const [ showCheckboxes, setShowCheckboxes ] = useState(false);
   const [ recipe, setRecipe ] = useState(/** @type {import('./types').RecipeNode} */(boatRecipe));
 
@@ -17,8 +17,8 @@ function App() {
           <button onClick={() => setRecipe(sconeRecipe)}>Scones</button>
         </span>
         <span style={{marginRight: 5}}>
-          <button onClick={() => setViewMode("tree")} disabled={viewMode === "tree"}>Tree</button>
           <button onClick={() => setViewMode("table")} disabled={viewMode === "table"}>Table</button>
+          <button onClick={() => setViewMode("tree")} disabled={viewMode === "tree"}>Tree</button>
         </span>
         <label>
           <input type="checkbox" checked={showCheckboxes} onChange={e => setShowCheckboxes(e.target.checked)} />
