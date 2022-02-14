@@ -1,6 +1,7 @@
 import './App.css';
 import boatRecipe from "./recipes/boat.json";
 import sconeRecipe from "./recipes/scones.json";
+import brownieRecipe from "./recipes/brownies.json";
 import { RecipeNodeView } from './RecipeNodeView';
 import { useState } from 'react';
 import { RecipeNodeStats } from './RecipeNodeStats';
@@ -16,6 +17,7 @@ function App() {
         <span style={{marginRight: 5}}>
           <button onClick={() => setRecipe(boatRecipe)}>Boat</button>
           <button onClick={() => setRecipe(sconeRecipe)}>Scones</button>
+          <button onClick={() => setRecipe(brownieRecipe)}>Brownies</button>
         </span>
         <span style={{marginRight: 5}}>
           <button onClick={() => setViewMode("table")} disabled={viewMode === "table"}>Table</button>

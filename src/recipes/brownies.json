@@ -1,0 +1,47 @@
+{
+    "name": "Brownies",
+    "action": ["Cut","Bake"],
+    "pre": [
+        "Oven; 180°c",
+        {
+            "action": "Pour",
+            "pre": [
+                {
+                    "action": "Grease",
+                    "pre": [
+                        "Tin; 28 cm × 18cm"
+                    ]
+                },
+                {
+                    "name": "Batter",
+                    "action": "Mix",
+                    "pre": [
+                        "Self Raising Flour; 100 g",
+                        "Salt; pinch",
+                        "Chopped Walnuts; 50 g",
+                        {
+                            "action": "Stir",
+                            "pre": [
+                                "Dark Soft Brown Sugar; 175 g",
+                                {
+                                    "action": "Mix",
+                                    "pre": [
+                                        "Eggs; 2 medium",
+                                        "Vanilla Essence; ½ tsp",
+                                        {
+                                            "action": ["Cool", "Melt"],
+                                            "pre": [
+                                                "Margarine; 100 g",
+                                                "Plain Chocolate; 50 g"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
