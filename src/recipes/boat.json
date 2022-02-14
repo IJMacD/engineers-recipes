@@ -7,8 +7,15 @@
             "name": "Completed Hull",
             "pre": [
                 {
-                    "action": ["Paint; Sand, Varnish", "Sand"],
-                    "pre": ["Hull"]
+                    "action": "Paint; Sand, Varnish",
+                    "pre": [
+                        {
+                            "action": "Sand",
+                            "pre": ["Hull"],
+                            "duration": 3
+                        }
+                    ],
+                    "duration": 2
                 },
                 {
                     "action": ["Varnish", "Sand", "Epoxy coat", "Stain", "Route"],

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./RecipeNodeView.css";
+import "./RecipeNodeView.scss";
 
 /** @typedef {import('./types').RecipeNode} RecipeNode */
 
@@ -14,7 +14,7 @@ import "./RecipeNodeView.css";
     return (
         <div className={style === "tree" ? "RecipeNodeTree" : "RecipeNodeTable"}>
             <ul className="list">
-                <RecipeNodeItem action={node.action} pre={node.pre} name={node.name} showCheckboxes={showCheckboxes} />
+                <RecipeNodeItem node={node} showCheckboxes={showCheckboxes} />
             </ul>
         </div>
     );
@@ -23,12 +23,12 @@ import "./RecipeNodeView.css";
 /**
  *
  * @param {object} props
- * @param {string|string[]} props.action
- * @param {(RecipeNode|string)[]} props.pre
- * @param {string} [props.name]
+ * @param {RecipeNode} props.node
  * @param {boolean} [props.showCheckboxes]
  */
-function RecipeNodeItem ({ action, pre, name = null, showCheckboxes = false }) {
+function RecipeNodeItem ({ node, showCheckboxes = false }) {
+
+    const { action, pre, name = null } = node;
 
     if (!action) {
         throw Error("Action cannot be null");
@@ -46,44 +46,49 @@ function RecipeNodeItem ({ action, pre, name = null, showCheckboxes = false }) {
         const [ thisAction, ...otherActions ] = action;
         const newAction = otherActions.length === 1 ? otherActions[0] : otherActions;
 
-        const newPre = [
-            {
-                action: newAction,
-                pre
-            }
-        ];
+        const newNode = {
+            action: thisAction,
+            name,
+            pre: [
+                {
+                    action: newAction,
+                    pre
+                }
+            ]
+        };
 
-        return <RealItem name={name} action={thisAction} pre={newPre} showCheckboxes={showCheckboxes} />
+        return <RealItem node={newNode} showCheckboxes={showCheckboxes} />
     }
 
-    return <RealItem name={name} action={action} pre={pre} showCheckboxes={showCheckboxes} />;
+    return <RealItem node={node} showCheckboxes={showCheckboxes} />;
 }
 
 /**
  *
  * @param {object} props
- * @param {string|string[]} props.action
- * @param {(RecipeNode|string)[]} props.pre
- * @param {string} [props.name]
+ * @param {RecipeNode} props.node
  * @param {boolean} [props.showCheckboxes]
  */
-function RealItem ({ name, action, pre, showCheckboxes }) {
+function RealItem ({ node, showCheckboxes }) {
     const [ collapsed, setCollapsed ] = useState(false);
+    const [ completed, setCompleted ] = useState(false);
+
+    const { action, pre, name = null, duration = 1 } = node;
 
     return (
-        <li className={collapsed?"ingredient":"item"}>
-            { name && <p className={collapsed?null:"name"} style={{ cursor: "pointer", margin: 0 }} onClick={() => setCollapsed(c => !c)}>{ collapsed && "+ "}{name}</p> }
-            <label className="action" style={collapsed?{display:"none"}:null}>
-                { showCheckboxes && <input type="checkbox" /> }
+        <li className={`item ${collapsed?"collapsed":""} ${completed?"completed":""}`}>
+            { name && <p className="name" onClick={() => setCollapsed(c => !c)}>{ collapsed && "+ "}{name}</p> }
+            <label className="action" data-duration={duration}>
+                <input type="checkbox" checked={completed} onChange={e => setCompleted(e.target.checked)} style={{display:!showCheckboxes?"none":null}} />
                 {action}
             </label>
-            <ul className="list" style={collapsed?{display:"none"}:null}>
+            <ul className="list">
                 {
                     pre.map((p, i) => {
                         if (typeof p === "string") {
                             return <li key={i} className="ingredient">{p}</li>;
                         } else {
-                            return <RecipeNodeItem key={i} action={p.action} pre={p.pre} name={p.name} showCheckboxes={showCheckboxes} />;
+                            return <RecipeNodeItem key={i} node={p} showCheckboxes={showCheckboxes} />;
                         }
                     })
                 }

@@ -1,0 +1,133 @@
+
+.RecipeNodeTree {
+
+    .list {
+        padding: 5px;
+    }
+    .item {
+        display: inline-block;
+    }
+    .item:not(.collapsed) {
+        border-radius: 5px;
+        padding: 5px;
+        margin: 10px;
+        background-color: rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    :not(.collapsed) > .name {
+        font-weight: bold;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        border: 1px solid #333333;
+        padding: 5px;
+        margin: -5px -5px 5px -5px;
+        cursor: pointer;
+    }
+    .action {
+        background-color: #00CCCC;
+        border: 1px solid #009999;
+        color: #003333;
+        border-radius: 5px;
+        padding: 2px 4px;
+        margin: 0;
+        display: inline-block;
+    }
+    .ingredient,
+    .collapsed .name
+    {
+        list-style: none;
+        padding: 5px;
+        background: #333333;
+        border-radius: 5px;
+        color: #F5F5F5;
+        display: inline-block;
+        margin: 0;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    .collapsed {
+        .action,
+        .list {
+            display: none;
+        }
+        .name {
+            cursor: pointer;
+        }
+    }
+}
+.RecipeNodeTable {
+    & > .list {
+        min-width: 100%;
+    }
+    .list {
+        border: 1px solid #333333;
+        margin: -1px;
+        flex: 1;
+        display: inline-flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .item {
+        display: flex;
+        flex-direction: row-reverse;
+        border: 1px solid #333333;
+        margin: -1px;
+        flex: 1;
+        align-items: stretch;
+    }
+    :not(.collapsed) > .name {
+        writing-mode: vertical-rl;
+        margin: 0;
+        border: 1px solid #333333;
+        padding: 4px 2px;
+        color: white;
+        background-color: #555555;
+        cursor: pointer;
+    }
+    .action {
+        margin: 5px;
+        padding: 2px 4px;
+        width: 120px;
+        width: calc(120px * var(--duration));
+        width: calc(120px * attr(data-duration number, 1));
+        background-color: #00CCCC;
+        border: 1px solid #009999;
+        color: #003333;
+        border-radius: 5px;
+    }
+    @for $i from 1 through 10 {
+        .action[data-duration="#{$i}"] {
+            --duration: #{$i};
+        }
+    }
+    .ingredient,
+    .collapsed .name
+    {
+        list-style: none;
+        font-weight: bold;
+        border: 1px solid #333333;
+        margin: -1px;
+        padding: 2px 4px;
+        flex: 1;
+    }
+}
+.RecipeNodeTree,
+.RecipeNodeTable {
+    .collapsed {
+        .action,
+        .list {
+            display: none;
+        }
+    }
+    .completed .action {
+        background-color: transparent;
+    }
+}
+.RecipeNodeTable {
+    .collapsed {
+        .name {
+            height: 100%;
+            cursor: pointer;
+        }
+    }
+}
