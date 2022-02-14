@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App" style={{margin: 20}}>
-      <p>
+      <p className="controls">
         <span style={{marginRight: 5}}>
           <button onClick={() => setRecipe(boatRecipe)}>Boat</button>
           <button onClick={() => setRecipe(sconeRecipe)}>Scones</button>

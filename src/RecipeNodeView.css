@@ -1,6 +1,4 @@
-.RecipeNodeTree {
-    overflow-x: auto;
-}
+
 .RecipeNodeTree .list {
     padding: 5px;
 }
@@ -39,14 +37,14 @@
     margin-right: 5px;
     margin-bottom: 5px;
 }
-.RecipeNodeTable {
-    overflow-x: auto;
+.RecipeNodeTable > .list {
+    min-width: 100%;
 }
 .RecipeNodeTable .list {
     border: 1px solid #333333;
     margin: -1px;
     flex: 1;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     padding: 0;
 }
