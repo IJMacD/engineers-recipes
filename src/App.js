@@ -3,6 +3,7 @@ import boatRecipe from "./recipes/boat.json";
 import sconeRecipe from "./recipes/scones.json";
 import { RecipeNodeView } from './RecipeNodeView';
 import { useState } from 'react';
+import { RecipeNodeStats } from './RecipeNodeStats';
 
 function App() {
   const [ viewMode, setViewMode ] = useState("table");
@@ -26,6 +27,7 @@ function App() {
         </label>
       </p>
       <RecipeNodeView node={recipe} style={viewMode} showCheckboxes={showCheckboxes} />
+      <RecipeNodeStats node={recipe} />
     </div>
   );
 }

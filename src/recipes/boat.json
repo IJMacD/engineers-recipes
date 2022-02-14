@@ -27,7 +27,7 @@
                     "name": "Completed Seats",
                     "pre": [
                         {
-                            "action": "Varnish",
+                            "action": ["Sand","Varnish"],
                             "pre": [
                                 {
                                     "action": "Sealant + Screw",
