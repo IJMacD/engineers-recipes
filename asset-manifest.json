@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/engineers-recipes/static/css/main.36defd2f.css",
-    "main.js": "/engineers-recipes/static/js/main.df439c9c.js",
+    "main.js": "/engineers-recipes/static/js/main.f90b4deb.js",
     "index.html": "/engineers-recipes/index.html",
     "main.36defd2f.css.map": "/engineers-recipes/static/css/main.36defd2f.css.map",
-    "main.df439c9c.js.map": "/engineers-recipes/static/js/main.df439c9c.js.map"
+    "main.f90b4deb.js.map": "/engineers-recipes/static/js/main.f90b4deb.js.map"
   },
   "entrypoints": [
     "static/css/main.36defd2f.css",
-    "static/js/main.df439c9c.js"
+    "static/js/main.f90b4deb.js"
   ]
 }
