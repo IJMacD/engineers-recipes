@@ -3,3 +3,12 @@
         display: none;
     }
 }
+
+.App {
+    margin: 20px;
+    display: flex;
+}
+
+.controls {
+    padding: 10px;
+}

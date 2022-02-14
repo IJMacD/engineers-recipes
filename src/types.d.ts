@@ -3,4 +3,5 @@ export interface RecipeNode {
     pre: (RecipeNode|string)[];
     name?: string;
     duration?: number;
+    completed?: boolean;
 }

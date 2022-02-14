@@ -2,7 +2,10 @@
     "name": "Brownies",
     "action": ["Cut","Bake"],
     "pre": [
-        "Oven; 180°c",
+        {
+            "action": "Preheat",
+            "pre": ["Oven; 180°c"]
+        },
         {
             "action": "Pour",
             "pre": [
