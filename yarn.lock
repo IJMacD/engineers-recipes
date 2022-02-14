@@ -5776,6 +5776,11 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
+markdown-tree-parser@^0.12.4:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/markdown-tree-parser/-/markdown-tree-parser-0.12.4.tgz#105b0ee76be06627a614ae2909a75b9e6a576776"
+  integrity sha512-+/BRwmwNupvy1y++mEz9xiKLaOP9tVUncmXL+i2AQymvsXB0Qc7X/CWCVfOQm0nch9JkQy4FW6GdMbW5o15eYQ==
+
 mdn-data@2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"

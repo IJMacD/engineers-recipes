@@ -1,15 +1,26 @@
 import './App.css';
 import boatRecipe from "./recipes/boat.json";
 import sconeRecipe from "./recipes/scones.json";
-import brownieRecipe from "./recipes/brownies.json";
 import { RecipeNodeView } from './RecipeNodeView';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RecipeNodeStats } from './RecipeNodeStats';
+import { parseMarkdownRecipe } from './parseMarkdownRecipe';
+
+const brownieMarkdown = require("./recipes/Brownies.md");
 
 function App() {
   const [ viewMode, setViewMode ] = useState("table");
   const [ showCheckboxes, setShowCheckboxes ] = useState(false);
+  const [ brownieRecipe, setBrownieRecipe ] = useState(/** @type {import('./types').RecipeNode} */(null));
   const [ recipe, setRecipe ] = useState(/** @type {import('./types').RecipeNode} */(boatRecipe));
+
+  useEffect(() => {
+    fetch(brownieMarkdown)
+    .then(r => r.text())
+    .then(t => {
+      setBrownieRecipe(parseMarkdownRecipe(t));
+    });
+  }, []);
 
   return (
     <div className="App" style={{margin: 20}}>
@@ -17,7 +28,7 @@ function App() {
         <span style={{marginRight: 5}}>
           <button onClick={() => setRecipe(boatRecipe)}>Boat</button>
           <button onClick={() => setRecipe(sconeRecipe)}>Scones</button>
-          <button onClick={() => setRecipe(brownieRecipe)}>Brownies</button>
+          { brownieRecipe && <button onClick={() => setRecipe(brownieRecipe)}>Brownies</button> }
         </span>
         <span style={{marginRight: 5}}>
           <button onClick={() => setViewMode("table")} disabled={viewMode === "table"}>Table</button>
